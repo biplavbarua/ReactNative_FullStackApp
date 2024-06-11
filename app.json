@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "React-Native-App",
-    "slug": "React-Native-App",
+    "name": "Video Player",
+    "scheme": "The Fancy App",
+    "slug": "Not YouTube",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
