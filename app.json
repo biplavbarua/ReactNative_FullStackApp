@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "Video Player",
-    "scheme": "The Fancy App",
-    "slug": "Not YouTube",
+    "name": "Aora",
+    "scheme": "The Video App",
+    "slug": "Not From YouTube",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "../assets/images/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
