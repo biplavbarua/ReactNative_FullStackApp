@@ -1,12 +1,13 @@
-import { View, Text, ScrollView, Image } from 'react-native'
+import { View, Text, ScrollView, Image, Alert } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Link, link } from 'expo-router';
+import { Link, link, router } from 'expo-router';
 
 import { images } from '../../constants';
 import FormField from '../../components/FormField';
 import { useState } from 'react';
 import CustomButton from '../../components/CustomButton';
+import { getCurrentUser, signIn } from '../../lib/appwrite';
 
 const SignIn = () => {
   const [Form, setForm] = useState({
@@ -14,10 +15,28 @@ const SignIn = () => {
     password: ''
   })
 
-  const [isSubmitting, setisSubmitting] = useState(false)
+  const [Submitting, setSubmitting] = useState(false)
 
-  const submit = () => {
+  const submit = async () => {
+    if(!Form.email === "" || !Form.password === "" ) {
+      Alert.alert('Error', 'All fields are required');
+    }
 
+    setSubmitting(true);
+    
+    try {
+      await signIn(Form.email, Form.password);
+      const result = await getCurrentUser();
+      setUser(result);
+      setIsLogged(true);
+
+      Alert.alert('Success', 'You have successfully logged in');
+      router.replace('/home')
+    } catch (error) {
+      Alert.alert('Error', error.message);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -49,7 +68,7 @@ const SignIn = () => {
             title="Sign In"
             handlePress={submit}
             containerStyles="mt-7"
-            isLoading={isSubmitting}
+            isLoading={Submitting}
           />
 
           <View className="justify-center pt-5 flex-row gap-2">
